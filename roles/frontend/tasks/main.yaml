@@ -1,5 +1,6 @@
   - name: disable default nginx
     ansible.builtin.command: dnf module disable nginx -y
+
   - name: enable default nginx
     ansible.builtin.command: dnf module enable nginx:1.24 -y
 
@@ -7,6 +8,12 @@
     ansible.builtin.dnf:
       name: nginx
       state: present
+
+  - name: start and enable nginx
+    ansible.builtin.service:
+      name: nginx
+      state: started
+      enabled: yes    
 
   - name: remove html directory
     ansible.builtin.file:
@@ -34,13 +41,7 @@
   - name: remove default nginx conf
     ansible.builtin.file:
      path: etc/nginx/nginx.conf 
-     state: absent
-
-  - name: start and enable nginx
-    ansible.builtin.service:
-      name: nginx
-      state: started
-      enabled: yes   
+     state: absent     
 
   - name: copy roboshop nginx conf
     ansible.builtin.template:
