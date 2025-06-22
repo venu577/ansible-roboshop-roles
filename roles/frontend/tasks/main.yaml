@@ -9,12 +9,6 @@
     name: nginx
     state: present
 
-- name: start and enable nginx
-  ansible.builtin.service:
-    name: nginx
-    state: started
-    enabled: yes    
-
 - name: remove html directory
   ansible.builtin.file:
     path: /usr/share/nginx/html
@@ -37,6 +31,13 @@
     remote_src: yes
     #this module thinks file exist on ansible control server, needs to extract on to remote machine
     #remote_src: yes means files already exist in frontend server  
+
+- name: start and enable nginx
+  ansible.builtin.service:
+    name: nginx
+    state: started
+    enabled: yes    
+
 
 - name: remove default nginx conf
   ansible.builtin.file:
