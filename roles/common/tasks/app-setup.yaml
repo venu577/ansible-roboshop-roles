@@ -12,12 +12,12 @@
 
 - name: download "{{ component }}" component code
   ansible.builtin.get_url:
-    url: https://roboshop-artifacts.s3.amazonaws.com/"{{ component }}"-v3.zip 
-    dest: /tmp/catalogue.zip          
+    url: "https://roboshop-artifacts.s3.amazonaws.com/{{ component }}-v3.zip" 
+    dest: "/tmp/{{ component }}.zip"          
 
-- name: extract "{{ component }}" code
+- name: "extract {{ component }} code"
   ansible.builtin.unarchive:
-    src: /tmp/"{{ component }}".zip
+    src: "/tmp/{{ component }}.zip"
     dest: /app
     remote_src: yes
     #this module thinks file exist on ansible control server, needs to extract on to remote machine
