@@ -15,12 +15,10 @@
    state: directory
    path: /app
 
-- name: download application 
-  tags:
-  - deployment 
+- name: download application  
   ansible.builtin.unarchive:
    src: "https://roboshop-artifacts.s3.amazonaws.com/catalogue-v{{ app_version }}.zip"
-  dest: /app
+   dest: /app
    remote_src: yes
 
 - name: install dependencies
