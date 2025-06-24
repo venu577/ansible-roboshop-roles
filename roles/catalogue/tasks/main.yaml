@@ -1,8 +1,3 @@
-- name: app setup
-  include_role:
-   name: common
-   tasks_from: app-setup
-
 - name: nodejs setup
   include_role:
    name: common
@@ -34,5 +29,12 @@
 - name: load products
   ansible.builtin.shell: mongosh --host mongodb.newgenrobots.site < /app/db/master-data.js
   when: catalogue_output.stdout | int < 0
-  #when condition is used to check if the catalogue database is not present, then only load          
+  #when condition is used to check if the catalogue database is not present, then only load
+
+- name: app setup
+  tags: 
+  - deployment
+  include_role:
+   name: common
+   tasks_from: deployment            
             
