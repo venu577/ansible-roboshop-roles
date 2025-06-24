@@ -38,9 +38,9 @@
   #when condition is used to check if the catalogue database is not present, then only load
 
 - name: app setup
-  # tags: 
-  # - deployment
-  include_role:
+  tags: 
+  - deployment
+  import_role:
    name: common
    tasks_from: deployment            
             
